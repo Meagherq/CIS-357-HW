@@ -22,6 +22,12 @@ class ViewController: UIViewController, SettingsViewControllerDelegate {
         super.viewDidLoad()
         toField.delegate = self
         fromField.delegate = self
+        self.setNeedsStatusBarAppearanceUpdate()
+        self.view.backgroundColor = BACKGROUND_COLOR
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,6 +150,12 @@ extension ViewController : UITextFieldDelegate {
         } else {
             toField.text = ""
         }
+    }
+}
+
+extension UINavigationController {
+    override open var preferredStatusBarStyle : UIStatusBarStyle {
+        return topViewController?.preferredStatusBarStyle ?? .default
     }
 }
 
